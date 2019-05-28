@@ -19,3 +19,8 @@
 ### `cli-docs-directory`
 
 数据保存在哪里？如果该目录不存在，`cli-docs.el` 会自动创建。
+
+## 心愿单
+
+- [ ] Helm 界面
+- [ ] 更新 Cache ([If-Modified-Since - HTTP | MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/If-Modified-Since))
