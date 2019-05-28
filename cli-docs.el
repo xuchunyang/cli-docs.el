@@ -105,17 +105,21 @@
   "Helm interface for `cli-docs'"
   (interactive)
   (require 'helm)
-  (helm :sources
-        (helm-build-sync-source "Commands"
-          :candidates (mapcar
-                       (lambda (x)
-                         (pcase-exhaustive x
-                           (`(,name . ,description)
-                            (cons (format "%-10s  %s" name description)
-                                  name))))
-                       (cli-docs-index))
-          :action #'cli-docs)
-        :buffer "*CLI Commands*"))
+  (let* ((candidates (mapcar
+                      (lambda (x)
+                        (pcase-exhaustive x
+                          (`(,name . ,description)
+                           (cons (format "%-10s  %s" name description)
+                                 name))))
+                      (cli-docs-index)))
+         (guess (thing-at-point 'symbol))
+         (guess (and guess (downcase guess)))
+         (input (and guess (rassoc guess candidates) guess)))
+    (helm :sources (helm-build-sync-source "Commands"
+                     :candidates candidates
+                     :action #'cli-docs)
+          :input input
+          :buffer "*CLI Commands*")))
 
 (provide 'cli-docs)
 ;;; cli-docs.el ends here
