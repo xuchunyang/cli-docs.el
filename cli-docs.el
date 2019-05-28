@@ -97,5 +97,25 @@
       (url-copy-file (format cli-docs-command-url command) filename))
     (view-file filename)))
 
+(declare-function helm "helm" (&rest plist))
+(declare-function helm-build-sync-source "helm-source" (name &rest args))
+
+;;;###autoload
+(defun cli-docs-helm ()
+  "Helm interface for `cli-docs'"
+  (interactive)
+  (require 'helm)
+  (helm :sources
+        (helm-build-sync-source "Commands"
+          :candidates (mapcar
+                       (lambda (x)
+                         (pcase-exhaustive x
+                           (`(,name . ,description)
+                            (cons (format "%-10s  %s" name description)
+                                  name))))
+                       (cli-docs-index))
+          :action #'cli-docs)
+        :buffer "*CLI Commands*"))
+
 (provide 'cli-docs)
 ;;; cli-docs.el ends here

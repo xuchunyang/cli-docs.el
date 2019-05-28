@@ -14,6 +14,10 @@
 
 查看 `grep(1)` 的文档，使用 Markdown Mode 渲染。
 
+### `M-x cli-docs-helm`
+
+Helm 版本的 `M-x cli-docs`。
+
 ## 定制
 
 ### `cli-docs-directory`
@@ -22,5 +26,5 @@
 
 ## 心愿单
 
-- [ ] Helm 界面
+- [x] Helm 界面
 - [ ] 更新 Cache ([If-Modified-Since - HTTP | MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/If-Modified-Since))
