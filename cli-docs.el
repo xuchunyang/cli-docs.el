@@ -109,7 +109,9 @@
                       (lambda (x)
                         (pcase-exhaustive x
                           (`(,name . ,description)
-                           (cons (format "%-10s  %s" name description)
+                           ;; (apply #'max (mapcar #'length (mapcar #'car cli-docs-index)))
+                           ;; => 17
+                           (cons (format "%-17s  %s" name description)
                                  name))))
                       (cli-docs-index)))
          (guess (thing-at-point 'symbol))
