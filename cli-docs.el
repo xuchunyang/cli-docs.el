@@ -32,6 +32,7 @@
 
 (require 'seq)
 (require 'json)
+(require 'url)
 
 (defvar url-http-end-of-headers)
 (defvar url-http-response-status)
