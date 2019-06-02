@@ -121,7 +121,7 @@
                      :candidates candidates
                      :action #'cli-docs)
           :input input
-          :buffer "*CLI Commands*")))
+          :buffer "*helm CLI Commands*")))
 
 (provide 'cli-docs)
 ;;; cli-docs.el ends here
