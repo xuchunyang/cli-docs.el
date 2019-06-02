@@ -27,4 +27,4 @@ Helm 版本的 `M-x cli-docs`。
 ## 心愿单
 
 - [x] Helm 界面
-- [ ] 更新 Cache ([If-Modified-Since - HTTP | MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/If-Modified-Since))
+- [x] 更新 Cache

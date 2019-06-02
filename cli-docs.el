@@ -56,6 +56,20 @@
   :group 'cli-docs
   :type 'directory)
 
+;;;###autoload
+(defun cli-docs-update-cache ()
+  "Update caches."
+  (interactive)
+  (let* ((files (directory-files cli-docs-directory nil (rx ".md" eos)))
+         (commands (mapcar #'file-name-sans-extension files)))
+    (cl-loop for command in commands
+             for i from 1
+             for url = (format cli-docs-command-url command)
+             for filename = (expand-file-name (concat command ".md") cli-docs-directory)
+             do (let ((url-show-status nil))
+                  (message "[%d/%d] Fetching %s..." i (length commands) url)
+                  (url-copy-file url filename t)))))
+
 (defvar cli-docs-index nil
   "A list of (NAME . DESCRIPTION).")
 
