@@ -113,7 +113,7 @@
     (view-file filename)))
 
 (declare-function helm "helm" (&rest plist))
-(declare-function helm-build-sync-source "helm-source" (name &rest args))
+(declare-function helm-make-source "helm-source" (name class &rest args))
 
 ;;;###autoload
 (defun cli-docs-helm ()
@@ -132,7 +132,7 @@
          (guess (thing-at-point 'symbol))
          (guess (and guess (downcase guess)))
          (input (and guess (rassoc guess candidates) guess)))
-    (helm :sources (helm-build-sync-source "Commands"
+    (helm :sources (helm-make-source "Commands" 'helm-source-sync
                      :candidates candidates
                      :action #'cli-docs)
           :input input
