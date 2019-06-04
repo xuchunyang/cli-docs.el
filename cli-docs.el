@@ -79,10 +79,10 @@
   (unless cli-docs-index
     (setq cli-docs-index
           (with-current-buffer (url-retrieve-synchronously cli-docs-index-url)
-            (unless (= url-http-response-status 200)
+            (set-buffer-multibyte t)
+            (unless (memq url-http-response-status '(200 304))
               (error "url request failed: %s\n\n%s" url-http-response-status
                      (buffer-string)))
-            (set-buffer-multibyte t)
             ;; `url-http-end-of-headers' doesn't work well while caching
             (goto-char (point-min))
             (re-search-forward "\n\n")
